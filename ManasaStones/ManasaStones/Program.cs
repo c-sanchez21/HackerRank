@@ -5,27 +5,26 @@ namespace ManasaStones
 {
     class Program
     {
+        //Problem: https://www.hackerrank.com/challenges/manasa-and-stones/problem
         static void Main(string[] args)
         {
-            int stones = 3;
-            int a = 1;
-            int b = 2;
-            int val = 0;
-            List<int> values = new List<int>();
-            for(int i = 0; i < stones; i++)
+            int[] res = stones(4, 10, 100);
+        }
+        public static int[] stones(int n, int a, int b)
+        {
+            List<int> values = new List<int>();//Possible values of last stone
+            int val;
+            n--;//First stone is always zero
+            for (int i = n; i >= 0; i--)
             {
-                for(int j = 0; j < stones-i; j++)
-                {
-                    val = +b;
-                }
-                values.Add(val);
-                val = (i + 1) * a;
+                val = 0;
+                val += i * a;
+                val += (n - i) * b;
+                if (!values.Contains(val))
+                    values.Add(val);
             }
             values.Sort();
-
-            foreach (int v in values)
-                Console.Write(v + " ");
-            
+            return values.ToArray();
         }
     }
 }
